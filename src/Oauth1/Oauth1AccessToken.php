@@ -1,7 +1,7 @@
 <?php
 namespace Blimp\Accounts\Oauth1;
 
-use Blimp\Base\BlimpException;
+use Blimp\Http\BlimpHttpException;
 use Pimple\Container;
 use Blimp\Accounts\Oauth1\Protocol;
 use Symfony\Component\HttpFoundation\Request;
@@ -110,7 +110,7 @@ abstract class Oauth1AccessToken {
             return $response;
         }
 
-        throw new BlimpException(Response::HTTP_INTERNAL_SERVER_ERROR, 'No data');
+        throw new BlimpHttpException(Response::HTTP_INTERNAL_SERVER_ERROR, 'No data');
     }
 
     public function requestAccessToken($oauth_token, $oauth_verifier, $oauth_token_secret) {
@@ -142,7 +142,7 @@ abstract class Oauth1AccessToken {
         switch ($this->request->getMethod()) {
             case 'GET':
                 if ($this->request->query->get('denied') != null) {
-                    throw new BlimpException(Response::HTTP_UNAUTHORIZED, 'Access denied');
+                    throw new BlimpHttpException(Response::HTTP_UNAUTHORIZED, 'Access denied');
                 } else {
                     $key = $this->getKey();
 
@@ -165,7 +165,7 @@ abstract class Oauth1AccessToken {
                         }
 
                         if (strlen($oauth_token_secret) == 0 || $oauth_token == '' || $oauth_verifier == '') {
-                            throw new BlimpException(Response::HTTP_INTERNAL_SERVER_ERROR, 'INVALID_OAUTH1_SESSION_DATA');
+                            throw new BlimpHttpException(Response::HTTP_INTERNAL_SERVER_ERROR, 'INVALID_OAUTH1_SESSION_DATA');
                         } else {
                             /* Get oauth_data */
                             $access_token = $this->requestAccessToken($oauth_token, $oauth_verifier, $oauth_token_secret);
@@ -182,7 +182,7 @@ abstract class Oauth1AccessToken {
                 break;
 
             default:
-                throw new BlimpException(Response::HTTP_METHOD_NOT_ALLOWED, 'Method not allowed');
+                throw new BlimpHttpException(Response::HTTP_METHOD_NOT_ALLOWED, 'Method not allowed');
         }
     }
 }

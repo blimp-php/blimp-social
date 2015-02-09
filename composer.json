@@ -12,7 +12,6 @@
         }
     ],
     "require": {
-        "blimp/blimp-base": "@dev",
         "blimp/blimp-data-access-mongo": "@dev"
     },
     "autoload": {
@@ -24,7 +23,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "../blimp-base"
+            "url": "../blimp-http"
         },
         {
             "type": "vcs",

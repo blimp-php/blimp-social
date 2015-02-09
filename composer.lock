@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0ce9102b754b7d38d8d3c4f8efd24839",
+    "hash": "5a2079cae346ce92a266f9d54138ee62",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -47,54 +47,16 @@
             "time": "2014-09-04 13:06:40"
         },
         {
-            "name": "blimp/blimp-base",
+            "name": "blimp/blimp-data-access",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "../blimp-base",
-                "reference": "4b7eb73e53f7e506bf368af90a9a3be9030b7f95"
+                "url": "../blimp-data-access",
+                "reference": "c572ce0ee0f02cd17c0afbd3b6df89249b33109e"
             },
             "require": {
-                "pimple/pimple": "~3.0",
-                "psr/log": "~1.0",
-                "symfony/config": "2.5.*",
-                "symfony/yaml": "2.5.*"
-            },
-            "suggest": {
-                "monolog/monolog": "Allow logging of the application"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Blimp\\": "src"
-                }
-            },
-            "license": [
-                "LGPL-3.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Nelson Antunes",
-                    "email": "nelson.antunes@gmail.com",
-                    "homepage": "http://nantunes.net",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Blimp framework",
-            "time": "2015-02-09 16:25:24"
-        },
-        {
-            "name": "blimp/blimp-data-access-mongo",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "../blimp-data-access-mongo",
-                "reference": "16cc7acdb906c1451eeeb7fb624ef59227ada086"
-            },
-            "require": {
-                "blimp/blimp-base": "@dev",
-                "doctrine/mongodb-odm": "1.0.*@dev",
-                "gedmo/doctrine-extensions": "2.3.*"
+                "gedmo/doctrine-extensions": "2.3.*",
+                "pimple/pimple": "~3.0"
             },
             "type": "library",
             "autoload": {
@@ -114,7 +76,74 @@
                 }
             ],
             "description": "Blimp framework",
-            "time": "2015-02-09 15:28:44"
+            "time": "2015-02-09 17:17:44"
+        },
+        {
+            "name": "blimp/blimp-data-access-mongo",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "../blimp-data-access-mongo",
+                "reference": "5b56cbff41cb6378e619fd2636698008524bb510"
+            },
+            "require": {
+                "blimp/blimp-data-access": "@dev",
+                "blimp/blimp-http": "@dev",
+                "doctrine/mongodb-odm": "1.0.*@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Blimp\\DataAccess\\": "src"
+                }
+            },
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Nelson Antunes",
+                    "email": "nelson.antunes@gmail.com",
+                    "homepage": "http://nantunes.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Blimp framework",
+            "time": "2015-02-09 18:09:18"
+        },
+        {
+            "name": "blimp/blimp-http",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "../blimp-http",
+                "reference": "e7d68663637b65a9c81979340112b50e5563e8b4"
+            },
+            "require": {
+                "pimple/pimple": "~3.0",
+                "psr/log": "~1.0",
+                "symfony/http-foundation": "2.5.*",
+                "symfony/http-kernel": "2.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Blimp\\Http\\": "src"
+                }
+            },
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Nelson Antunes",
+                    "email": "nelson.antunes@gmail.com",
+                    "homepage": "http://nantunes.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Blimp framework",
+            "time": "2015-02-09 17:45:21"
         },
         {
             "name": "doctrine/annotations",
@@ -882,54 +911,6 @@
             "time": "2015-02-05 09:32:11"
         },
         {
-            "name": "symfony/config",
-            "version": "2.5.x-dev",
-            "target-dir": "Symfony/Component/Config",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/Config.git",
-                "reference": "c7309e33b719433d5cf3845d0b5b9608609d8c8e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Config/zipball/c7309e33b719433d5cf3845d0b5b9608609d8c8e",
-                "reference": "c7309e33b719433d5cf3845d0b5b9608609d8c8e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/filesystem": "~2.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.5-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\Config\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Symfony Config Component",
-            "homepage": "http://symfony.com",
-            "time": "2015-01-03 08:01:13"
-        },
-        {
             "name": "symfony/console",
             "version": "2.7.x-dev",
             "target-dir": "Symfony/Component/Console",
@@ -987,22 +968,35 @@
             "time": "2015-02-05 07:11:58"
         },
         {
-            "name": "symfony/filesystem",
+            "name": "symfony/debug",
             "version": "2.7.x-dev",
-            "target-dir": "Symfony/Component/Filesystem",
+            "target-dir": "Symfony/Component/Debug",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Filesystem.git",
-                "reference": "e681ca515e1e668a551b089177867e62e03d7d2d"
+                "url": "https://github.com/symfony/Debug.git",
+                "reference": "39a94beb5ea7f5f39854e7c8ab8dfda95e831f5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/e681ca515e1e668a551b089177867e62e03d7d2d",
-                "reference": "e681ca515e1e668a551b089177867e62e03d7d2d",
+                "url": "https://api.github.com/repos/symfony/Debug/zipball/39a94beb5ea7f5f39854e7c8ab8dfda95e831f5d",
+                "reference": "39a94beb5ea7f5f39854e7c8ab8dfda95e831f5d",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": ">=5.3.9",
+                "psr/log": "~1.0"
+            },
+            "conflict": {
+                "symfony/http-kernel": ">=2.3,<2.3.24|~2.4.0|>=2.5,<2.5.9|>=2.6,<2.6.2"
+            },
+            "require-dev": {
+                "symfony/class-loader": "~2.2",
+                "symfony/http-foundation": "~2.1|~3.0.0",
+                "symfony/http-kernel": "~2.3.24|~2.5.9|~2.6,>=2.6.2|~3.0.0"
+            },
+            "suggest": {
+                "symfony/http-foundation": "",
+                "symfony/http-kernel": ""
             },
             "type": "library",
             "extra": {
@@ -1012,7 +1006,7 @@
             },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\Filesystem\\": ""
+                    "Symfony\\Component\\Debug\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1029,27 +1023,88 @@
                     "email": "fabien@symfony.com"
                 }
             ],
-            "description": "Symfony Filesystem Component",
+            "description": "Symfony Debug Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-09 06:51:41"
+            "time": "2015-01-25 04:39:35"
         },
         {
-            "name": "symfony/yaml",
-            "version": "2.5.x-dev",
-            "target-dir": "Symfony/Component/Yaml",
+            "name": "symfony/event-dispatcher",
+            "version": "2.7.x-dev",
+            "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Yaml.git",
-                "reference": "6eb40abc613d80828d55a40811c7a3ca491bc926"
+                "url": "https://github.com/symfony/EventDispatcher.git",
+                "reference": "e9298668dce8dd219d1ee2290c7f313954f1f984"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/6eb40abc613d80828d55a40811c7a3ca491bc926",
-                "reference": "6eb40abc613d80828d55a40811c7a3ca491bc926",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/e9298668dce8dd219d1ee2290c7f313954f1f984",
+                "reference": "e9298668dce8dd219d1ee2290c7f313954f1f984",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "~2.0,>=2.0.5|~3.0.0",
+                "symfony/dependency-injection": "~2.6|~3.0.0",
+                "symfony/expression-language": "~2.6|~3.0.0",
+                "symfony/stopwatch": "~2.3|~3.0.0"
+            },
+            "suggest": {
+                "symfony/dependency-injection": "",
+                "symfony/http-kernel": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\EventDispatcher\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony EventDispatcher Component",
+            "homepage": "http://symfony.com",
+            "time": "2015-02-05 06:58:17"
+        },
+        {
+            "name": "symfony/http-foundation",
+            "version": "2.5.x-dev",
+            "target-dir": "Symfony/Component/HttpFoundation",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/HttpFoundation.git",
+                "reference": "79b2385ee420944ab89c6972acae9c7c8cb9a412"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/79b2385ee420944ab89c6972acae9c7c8cb9a412",
+                "reference": "79b2385ee420944ab89c6972acae9c7c8cb9a412",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/expression-language": "~2.4"
             },
             "type": "library",
             "extra": {
@@ -1059,7 +1114,84 @@
             },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\Yaml\\": ""
+                    "Symfony\\Component\\HttpFoundation\\": ""
+                },
+                "classmap": [
+                    "Symfony/Component/HttpFoundation/Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony HttpFoundation Component",
+            "homepage": "http://symfony.com",
+            "time": "2015-02-08 07:07:45"
+        },
+        {
+            "name": "symfony/http-kernel",
+            "version": "2.5.x-dev",
+            "target-dir": "Symfony/Component/HttpKernel",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/HttpKernel.git",
+                "reference": "b481edb3c476dcd2040443f38292c1fadd2fac88"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/b481edb3c476dcd2040443f38292c1fadd2fac88",
+                "reference": "b481edb3c476dcd2040443f38292c1fadd2fac88",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "psr/log": "~1.0",
+                "symfony/debug": "~2.5.9|~2.6,>=2.6.2",
+                "symfony/event-dispatcher": "~2.5.9|~2.6,>=2.6.2",
+                "symfony/http-foundation": "~2.5"
+            },
+            "require-dev": {
+                "symfony/browser-kit": "~2.3",
+                "symfony/class-loader": "~2.1",
+                "symfony/config": "~2.0,>=2.0.5",
+                "symfony/console": "~2.2",
+                "symfony/css-selector": "~2.0,>=2.0.5",
+                "symfony/dependency-injection": "~2.2",
+                "symfony/dom-crawler": "~2.0,>=2.0.5",
+                "symfony/expression-language": "~2.4",
+                "symfony/finder": "~2.0,>=2.0.5",
+                "symfony/process": "~2.0,>=2.0.5",
+                "symfony/routing": "~2.2",
+                "symfony/stopwatch": "~2.3",
+                "symfony/templating": "~2.2"
+            },
+            "suggest": {
+                "symfony/browser-kit": "",
+                "symfony/class-loader": "",
+                "symfony/config": "",
+                "symfony/console": "",
+                "symfony/dependency-injection": "",
+                "symfony/finder": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\HttpKernel\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1076,16 +1208,15 @@
                     "email": "fabien@symfony.com"
                 }
             ],
-            "description": "Symfony Yaml Component",
+            "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-25 04:37:39"
+            "time": "2015-02-08 07:08:16"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "blimp/blimp-base": 20,
         "blimp/blimp-data-access-mongo": 20
     },
     "prefer-stable": false,

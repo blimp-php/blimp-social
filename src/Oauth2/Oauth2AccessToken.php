@@ -1,7 +1,7 @@
 <?php
 namespace Blimp\Accounts\Oauth2;
 
-use Blimp\Base\BlimpException;
+use Blimp\Http\BlimpHttpException;
 use Pimple\Container;
 use Blimp\Accounts\Oauth2\Protocol;
 use Symfony\Component\HttpFoundation\Request;
@@ -119,7 +119,7 @@ abstract class Oauth2AccessToken {
         switch ($this->request->getMethod()) {
             case 'GET':
                 if ($this->request->query->get("error") != NULL && $this->request->query->get("error") == "access_denied") {
-                    throw new BlimpException(Response::UNAUTHORIZED, "Access denied");
+                    throw new BlimpHttpException(Response::UNAUTHORIZED, "Access denied");
                 } else {
                     $code = $this->getCode($this->request);
 
@@ -140,7 +140,7 @@ abstract class Oauth2AccessToken {
                 break;
 
             default:
-                throw new BlimpException(Response::HTTP_METHOD_NOT_ALLOWED, "Method not allowed");
+                throw new BlimpHttpException(Response::HTTP_METHOD_NOT_ALLOWED, "Method not allowed");
         }
     }
 }
