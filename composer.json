@@ -28,6 +28,10 @@
         },
         {
             "type": "vcs",
+            "url": "../blimp-data-access"
+        },
+        {
+            "type": "vcs",
             "url": "../blimp-data-access-mongo"
         }
     ]
