@@ -6,6 +6,7 @@ use Pimple\Container;
 use Blimp\Accounts\Oauth2\Protocol;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 abstract class Oauth2AccessToken {
     protected $api;
@@ -79,15 +80,14 @@ abstract class Oauth2AccessToken {
         $oss .= "?response_type=code";
         $oss .= "&client_id=" . $this->getClientID();
         if (strlen($scope) != 0) {
-            $oss .= "&scope=" . scope;
+            $oss .= "&scope=" . $scope;
         }
         $oss .= "&redirect_uri=" . urlencode($this->request->getUriForPath($this->request->getPathInfo()));
         $oss .= "&state=" . urlencode($this->getRedirectURI());
 
         $oss .= $this->getOtherAuthorizationRequestParams();
 
-        $response = new Response(Response::HTTP_TEMPORARY_REDIRECT);
-        $response->headers->set('Location', $oss);
+        $response = new RedirectResponse($oss);
 
         return $response;
     }

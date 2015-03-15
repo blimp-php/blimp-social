@@ -34,7 +34,7 @@ class Protocol {
 
         $all_params = array_merge($query_params, $params);
 
-        if ($all_params['access_token'] != null) {
+        if (!empty($all_params['access_token'])) {
             $headers[] = 'Authorization: Bearer ' . $all_params['access_token'];
             unset($all_params['access_token']);
         }
