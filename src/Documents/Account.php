@@ -6,7 +6,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /** @ODM\Document */
 class Account extends BlimpDocument {
-    /** @ODM\Id(strategy="NONE") */
+    /** @ODM\Id(strategy="CUSTOM", options={"class"="\Blimp\DataAccess\BlimpIdProvider"}) */
     protected $id;
 
     /** @ODM\String */
@@ -17,10 +17,6 @@ class Account extends BlimpDocument {
 
     /** @ODM\Hash */
     protected $profileData;
-
-    public function setId($id) {
-        $this->id = $id;
-    }
 
     public function setType($type) {
         $this->type = $type;
@@ -35,7 +31,7 @@ class Account extends BlimpDocument {
     public function getAuthData() {
         return $this->authData;
     }
-    
+
     public function setProfileData($profileData) {
         $this->profileData = $profileData;
     }
