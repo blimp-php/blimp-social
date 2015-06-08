@@ -138,6 +138,17 @@ abstract class Oauth2AccessToken {
                 }
 
                 break;
+                
+            case 'POST':
+                $data = $request->attributes->get('data');
+                
+                if ($data["access_token"] != NULL) {
+                    return $this->processAccountData($data["access_token"]);
+                }
+
+                throw new BlimpHttpException(Response::HTTP_BAD_REQUEST, "Missing access_token");
+
+                break;
 
             default:
                 throw new BlimpHttpException(Response::HTTP_METHOD_NOT_ALLOWED, "Method not allowed");
