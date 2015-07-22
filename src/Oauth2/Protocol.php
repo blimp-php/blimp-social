@@ -4,15 +4,15 @@ namespace Blimp\Accounts\Oauth2;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Protocol {
-    public static function get($url, array $params = [], array $headers = []) {
-        return self::exec('GET', $url, $params, $headers, null);
+    public static function get($url, array $params = [], array $headers = [], $keep_access_token_as_param = false) {
+        return self::exec('GET', $url, $params, $headers, null, $keep_access_token_as_param);
     }
 
-    public static function post($url, array $params = [], array $headers = [], $body = null) {
-        return self::exec('POST', $url, $params, $headers, $body);
+    public static function post($url, array $params = [], array $headers = [], $body = null, $keep_access_token_as_param = false) {
+        return self::exec('POST', $url, $params, $headers, $body, $keep_access_token_as_param);
     }
 
-    private static function exec($method, $url, array $params = [], array $headers = [], $body = null) {
+    private static function exec($method, $url, array $params = [], array $headers = [], $body = null, $keep_access_token_as_param = false) {
         $clean_url = $url;
 
         $query_params = [];
@@ -34,7 +34,7 @@ class Protocol {
 
         $all_params = array_merge($query_params, $params);
 
-        if (!empty($all_params['access_token'])) {
+        if (!empty($all_params['access_token']) && !$keep_access_token_as_param) {
             $headers[] = 'Authorization: Bearer ' . $all_params['access_token'];
             unset($all_params['access_token']);
         }
@@ -99,26 +99,22 @@ class Protocol {
     }
 
     private static function parseResponse($curl, $buffer, array $params) {
-        $content_length = \curl_getinfo($curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
-
         $content_type = \curl_getinfo($curl, CURLINFO_CONTENT_TYPE);
 
         $data = [];
 
-        if ($content_type != NULL && $content_length > 0) {
-            if (!empty($content_type)) {
-                if (strpos($content_type, 'application/json') === 0) {
+        if (!empty($content_type)) {
+            if (strpos($content_type, 'application/json') === 0) {
+                $data = json_decode($buffer, true);
+            } else if (strpos($content_type, 'application/xml') === 0) {
+                // TODO Parse XML
+            } else if (strpos($content_type, 'application/x-www-form-urlencoded') === 0) {
+                parse_str($buffer, $data);
+            } else {
+                if (substr($buffer, 0, 1) == '{') {
                     $data = json_decode($buffer, true);
-                } else if (strpos($content_type, 'application/xml') === 0) {
-                    // TODO Parse XML
-                } else if (strpos($content_type, 'application/x-www-form-urlencoded') === 0) {
-                    parse_str($buffer, $data);
                 } else {
-                    if (substr($buffer, 0, 1) == '{') {
-                        $data = json_decode($buffer, true);
-                    } else {
-                        parse_str($buffer, $data);
-                    }
+                    parse_str($buffer, $data);
                 }
             }
         }

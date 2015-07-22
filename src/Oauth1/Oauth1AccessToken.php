@@ -133,7 +133,7 @@ abstract class Oauth1AccessToken {
 
     /* do stuff */
 
-    abstract public function processAccountData(array $oauth_data);
+    abstract public function processAccountData($oauth_data);
 
     public function process(Request $request, Container $api) {
         $this->api = $api;

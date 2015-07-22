@@ -110,7 +110,7 @@ abstract class Oauth2AccessToken {
 
     /* do stuff */
 
-    abstract public function processAccountData(array $access_token);
+    abstract public function processAccountData($access_token);
 
     public function process(Request $request, Container $api) {
         $this->api = $api;
